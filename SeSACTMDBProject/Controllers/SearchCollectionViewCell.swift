@@ -21,7 +21,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rateNumberLabel: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var overViewLabel: UILabel!
+    @IBOutlet weak var castListLabel: UILabel!
     
     @IBOutlet weak var detailLabel: UILabel!
     
@@ -32,11 +32,16 @@ class SearchCollectionViewCell: UICollectionViewCell {
         self.releaseDtLabel.text = list[indexPath.row].releaseDt
         self.rateNumberLabel.text = "\(list[indexPath.row].rate)"
         self.nameLabel.text = list[indexPath.row].name
-        self.overViewLabel.text = list[indexPath.row].overview
         
         let url = URL(string: list[indexPath.row].posterImageView )
         self.posterImageView.kf.setImage(with: url)
         self.posterImageView.contentMode = .scaleAspectFill
+        
+        // 해당 영화에 출연한 배우 castlist 나타내기
+        let programID = list[indexPath.row].id
+//        self.castListLabel.text = castlist[indexPath.row][]
+        
+        
     }
     
     func configureLabel() {
@@ -49,8 +54,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
         nameLabel.font = .boldSystemFont(ofSize: 20)
         nameLabel.textColor = .black
         
-        overViewLabel.font = .boldSystemFont(ofSize: 14)
-        overViewLabel.textColor = .systemGray2
+        castListLabel.font = .boldSystemFont(ofSize: 14)
+        castListLabel.textColor = .systemGray2
         
         detailLabel.text = "자세히 보기"
         detailLabel.font = .boldSystemFont(ofSize: 14)
