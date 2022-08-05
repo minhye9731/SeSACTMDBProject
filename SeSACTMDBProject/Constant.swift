@@ -35,6 +35,12 @@ extension UICollectionViewCell: ReusableProtocol {
     }
 }
 
+extension UITableViewCell: ReusableProtocol {
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}
+
 
 // MARK: - 이미지
 enum ImageName: String {

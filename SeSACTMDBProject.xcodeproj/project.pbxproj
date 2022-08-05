@@ -25,6 +25,10 @@
 		0E4A95AE289AC05600FA3ACC /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4A95AD289AC05600FA3ACC /* SideMenu */; };
 		0E4A95B4289BA64200FA3ACC /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4A95B3289BA64200FA3ACC /* JGProgressHUD */; };
 		0E4A95B6289BB2D700FA3ACC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95B5289BB2D700FA3ACC /* DetailViewController.swift */; };
+		0E4A95BD289D7D9B00FA3ACC /* OverViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95BB289D7D9B00FA3ACC /* OverViewTableViewCell.swift */; };
+		0E4A95BE289D7D9B00FA3ACC /* OverViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */; };
+		0E4A95C1289D7E1500FA3ACC /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */; };
+		0E4A95C2289D7E1500FA3ACC /* MemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		0E4A959F289A7B7500FA3ACC /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
 		0E4A95A1289A824700FA3ACC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		0E4A95B5289BB2D700FA3ACC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0E4A95BB289D7D9B00FA3ACC /* OverViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverViewTableViewCell.swift; sourceTree = "<group>"; };
+		0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverViewTableViewCell.xib; sourceTree = "<group>"; };
+		0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +116,8 @@
 				0E4A95742899F6BA00FA3ACC /* Main.storyboard */,
 				0E4A95792899F6BC00FA3ACC /* LaunchScreen.storyboard */,
 				0E4A959B289A75A800FA3ACC /* SearchCollectionViewCell.xib */,
+				0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */,
+				0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -118,6 +128,8 @@
 				0E4A9598289A754900FA3ACC /* SearchViewController.swift */,
 				0E4A959A289A75A800FA3ACC /* SearchCollectionViewCell.swift */,
 				0E4A95B5289BB2D700FA3ACC /* DetailViewController.swift */,
+				0E4A95BB289D7D9B00FA3ACC /* OverViewTableViewCell.swift */,
+				0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -202,8 +214,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E4A95BE289D7D9B00FA3ACC /* OverViewTableViewCell.xib in Resources */,
 				0E4A95832899F7D500FA3ACC /* .gitignore in Resources */,
 				0E4A957B2899F6BC00FA3ACC /* LaunchScreen.storyboard in Resources */,
+				0E4A95C2289D7E1500FA3ACC /* MemberTableViewCell.xib in Resources */,
 				0E4A959D289A75A800FA3ACC /* SearchCollectionViewCell.xib in Resources */,
 				0E4A95782899F6BC00FA3ACC /* Assets.xcassets in Resources */,
 				0E4A95762899F6BA00FA3ACC /* Main.storyboard in Resources */,
@@ -222,7 +236,9 @@
 				0E4A958B2899FAA700FA3ACC /* APIKey.swift in Sources */,
 				0E4A9599289A754900FA3ACC /* SearchViewController.swift in Sources */,
 				0E4A95712899F6BA00FA3ACC /* SceneDelegate.swift in Sources */,
+				0E4A95BD289D7D9B00FA3ACC /* OverViewTableViewCell.swift in Sources */,
 				0E4A95A0289A7B7500FA3ACC /* TMDBModel.swift in Sources */,
+				0E4A95C1289D7E1500FA3ACC /* MemberTableViewCell.swift in Sources */,
 				0E4A959C289A75A800FA3ACC /* SearchCollectionViewCell.swift in Sources */,
 				0E4A95B6289BB2D700FA3ACC /* DetailViewController.swift in Sources */,
 			);
