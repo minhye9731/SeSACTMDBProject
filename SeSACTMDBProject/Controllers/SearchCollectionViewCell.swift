@@ -29,8 +29,12 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     
     func setCellData(indexPath: IndexPath, list: [TMDBModel]) {
+        let digit: Double = pow(10, 1)
+        let rateValue: Double = list[indexPath.row].rate
+        
         self.releaseDtLabel.text = list[indexPath.row].releaseDt
-        self.rateNumberLabel.text = "\(list[indexPath.row].rate)"
+//        self.rateNumberLabel.text = String(format: "%.1f", rateValue)
+        self.rateNumberLabel.text = "\(round(rateValue * digit) / digit)"
         self.nameLabel.text = list[indexPath.row].name
         
         let url = URL(string: list[indexPath.row].posterImageView )
