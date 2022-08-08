@@ -14,6 +14,8 @@ struct EndPoint {
     
     static let imageURL = "https://image.tmdb.org/t/p/original"
     
+    static let genreURL = "https://api.themoviedb.org/3/genre/tv/list?"
+    
     static let memberURL = "https://api.themoviedb.org/3/tv/"
 }
     

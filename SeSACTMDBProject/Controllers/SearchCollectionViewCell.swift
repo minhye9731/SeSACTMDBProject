@@ -28,12 +28,15 @@ class SearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var arrowButton: UIButton!
     
     
-    func setCellData(indexPath: IndexPath, list: [TMDBModel]) {
+    func setCellData(indexPath: IndexPath, list: [TMDBModel], genre: [Int: String]) {
         let digit: Double = pow(10, 1)
         let rateValue: Double = list[indexPath.row].rate
+        let genreid: Int = list[indexPath.row].genreID
         
         self.releaseDtLabel.text = list[indexPath.row].releaseDt
-//        self.rateNumberLabel.text = String(format: "%.1f", rateValue)
+        
+        self.genreLabel.text = genre[genreid] != nil ? genre[genreid]! : "TV Program"
+        
         self.rateNumberLabel.text = "\(round(rateValue * digit) / digit)"
         self.nameLabel.text = list[indexPath.row].name
         
@@ -47,6 +50,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
         
         
     }
+    
+    
     
     func configureLabel() {
         releaseDtLabel.font = .systemFont(ofSize: 14)

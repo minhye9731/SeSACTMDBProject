@@ -10,7 +10,7 @@ import Foundation
 struct TMDBModel {
     
     let releaseDt: String
-    let genre: String
+    let genreID: Int
     let posterImageView: String
     let rate: Double
     let name: String

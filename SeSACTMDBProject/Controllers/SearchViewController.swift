@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var list : [TMDBModel] = []
+    var genre : [Int: String] = [:]
     var castList : [Int : [[Cast]] ] = [ : ]
     var crewList : [Int : [[Crew]] ] = [ : ]
     
@@ -37,6 +38,7 @@ class SearchViewController: UIViewController {
         
         configureLayout()
         fetchTVData()
+        fetcgGenreData()
     }
     
 // MARK: - Navi 설정
@@ -100,9 +102,10 @@ class SearchViewController: UIViewController {
                     let programName = tv["name"].stringValue
                     let overview = tv["overview"].stringValue
                     let id = tv["id"].intValue
-                    // genre는 항목별 섹션 참고해서 구현
+                    let genreid = tv["genre_ids"][0].intValue
+                    print("장르 1번째 : \(genreid)")
                     
-                    let data = TMDBModel(releaseDt: releaseDt, genre: "00", posterImageView: imageUrl, rate: rate, name: programName, overview: overview, id: id)
+                    let data = TMDBModel(releaseDt: releaseDt, genreID: genreid, posterImageView: imageUrl, rate: rate, name: programName, overview: overview, id: id)
                     
 //                    self.fetchMemberData(id: id)
                     
@@ -112,7 +115,7 @@ class SearchViewController: UIViewController {
                 
                 self.collectionView.reloadData()
                 
-                print(self.list)
+//                print(self.list)
                 
             case .failure(let error):
                 print(error)
@@ -120,6 +123,34 @@ class SearchViewController: UIViewController {
         
         }
         
+    }
+    
+    // MARK: - API 통신 (genre)
+    // 장르데이터를 통신으로 받아서 genre 딕셔너리에 담기
+    func fetcgGenreData() {
+        
+        let url = EndPoint.genreURL + "api_key=\(APIKey.BOXOFFICE)&language=en-US"
+        
+        AF.request(url, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                
+                for data in json["genres"].arrayValue {
+
+                    let id = data["id"].intValue
+                    let name = data["name"].stringValue
+
+                    self.genre.updateValue(name, forKey: id)
+                }
+
+                print(self.genre)
+//                self.collectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // MARK: - API 통신 (cast, crew)
@@ -152,7 +183,7 @@ class SearchViewController: UIViewController {
                 
                 self.collectionView.reloadData()
                 
-                print(self.castList)
+//                print(self.castList)
                 
             case .failure(let error):
                 print(error)
@@ -199,7 +230,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.reuseIdentifier, for: indexPath) as? SearchCollectionViewCell else { return SearchCollectionViewCell() }
         
-        item.setCellData(indexPath: indexPath, list: list)
+        item.setCellData(indexPath: indexPath, list: list, genre: genre)
         
         item.configureLabel()
         item.configureButton()
