@@ -28,26 +28,25 @@ class SearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var arrowButton: UIButton!
     
     
-    func setCellData(indexPath: IndexPath, list: [TMDBModel], genre: [Int: String]) {
+    func setCellData(type: Endpoint, indexPath: IndexPath, list: [TMDBModel], genre: GenreModel) {
         let digit: Double = pow(10, 1)
         let rateValue: Double = list[indexPath.row].rate
         let genreid: Int = list[indexPath.row].genreID
         
         self.releaseDtLabel.text = list[indexPath.row].releaseDt
         
-        self.genreLabel.text = genre[genreid] != nil ? genre[genreid]! : "TV Program"
+        self.genreLabel.text = genre.genreDB[genreid]
         
         self.rateNumberLabel.text = "\(round(rateValue * digit) / digit)"
         self.nameLabel.text = list[indexPath.row].name
         
-        let url = URL(string: list[indexPath.row].posterImageView )
+        let url = URL(string: type.requestURL + list[indexPath.row].posterImageView)
         self.posterImageView.kf.setImage(with: url)
         self.posterImageView.contentMode = .scaleAspectFill
         
         // 해당 영화에 출연한 배우 castlist 나타내기
         let programID = list[indexPath.row].id
 //        self.castListLabel.text = castlist[indexPath.row][]
-        
         
     }
     

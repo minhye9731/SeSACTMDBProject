@@ -17,9 +17,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var list : [TMDBModel] = []
-    var genre : [Int: String] = [:]
-    var castList : [Int : [[Cast]] ] = [ : ]
-    var crewList : [Int : [[Crew]] ] = [ : ]
+    var genre = GenreModel.shared
+    var castList : [Int : [[Cast]] ] = [:]
+    var crewList : [Int : [[Crew]] ] = [:]
     
     var startPage = 1
     var totalCount = 0
@@ -37,8 +37,9 @@ class SearchViewController: UIViewController {
         collectionView.register(UINib(nibName: SearchCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
         
         configureLayout()
-        fetchTVData()
-        fetcgGenreData()
+        fetchTVData(startPage: startPage)
+        fetchGenreData()
+        
     }
     
 // MARK: - Navi 설정
@@ -77,79 +78,35 @@ class SearchViewController: UIViewController {
         sideVC?.modalTransitionStyle = .coverVertical
         sideVC?.modalPresentationStyle = .pageSheet
         self.present(sideVC!, animated: true, completion: nil)
-        
-        
     }
     
 // MARK: - API 통신 (TV 프로그램)
-    func fetchTVData() {
-        
-        
-        let url = EndPoint.tmdbURL + "api_key=\(APIKey.BOXOFFICE)&page=\(startPage)"
-        
-        AF.request(url, method: .get).validate().responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                self.totalCount = json["total_pages"].intValue
-
-                for tv in json["results"].arrayValue {
-                    
-                    let imageUrl = EndPoint.imageURL + tv["poster_path"].stringValue
-                    let releaseDt = tv["first_air_date"].stringValue
-                    let rate = tv["vote_average"].doubleValue
-                    let programName = tv["name"].stringValue
-                    let overview = tv["overview"].stringValue
-                    let id = tv["id"].intValue
-                    let genreid = tv["genre_ids"][0].intValue
-                    print("장르 1번째 : \(genreid)")
-                    
-                    let data = TMDBModel(releaseDt: releaseDt, genreID: genreid, posterImageView: imageUrl, rate: rate, name: programName, overview: overview, id: id)
-                    
-//                    self.fetchMemberData(id: id)
-                    
-                    self.list.append(data)
-                    }
-                
-                
+    func fetchTVData(startPage: Int) {
+        TMDBAPIManager.shared.fetchTVAPI(type: .trend, startPage: startPage) { totalCount, trendDataArray in
+            
+            self.totalCount = totalCount
+            self.list.append(contentsOf: trendDataArray)
+            
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                
-//                print(self.list)
-                
-            case .failure(let error):
-                print(error)
             }
-        
         }
-        
     }
     
     // MARK: - API 통신 (genre)
     // 장르데이터를 통신으로 받아서 genre 딕셔너리에 담기
-    func fetcgGenreData() {
-        
-        let url = EndPoint.genreURL + "api_key=\(APIKey.BOXOFFICE)&language=en-US"
-        
-        AF.request(url, method: .get).validate().responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                for data in json["genres"].arrayValue {
+    func fetchGenreData() {
+        TMDBAPIManager.shared.fetchGenreAPI(type: .genre) { json in
+            
+            for data in json["genres"].arrayValue {
 
-                    let id = data["id"].intValue
-                    let name = data["name"].stringValue
+                let id = data["id"].intValue
+                let name = data["name"].stringValue
 
-                    self.genre.updateValue(name, forKey: id)
-                }
-
-                print(self.genre)
-//                self.collectionView.reloadData()
-                
-            case .failure(let error):
-                print(error)
+                self.genre.appendGenreDT(value: name, key: id)
             }
+
+            self.collectionView.reloadData()
         }
     }
     
@@ -204,7 +161,7 @@ extension SearchViewController:  UICollectionViewDataSourcePrefetching {
             if list.count - 1 == indexPath.item && list.count < totalCount {
                 startPage += 1 // display 몇 개 하냐에 따라 더해주는 숫자는 다름
 //                fetchImage(query: searchBar.text!)
-                fetchTVData()
+                fetchTVData(startPage: startPage)
             }
         }
         print("===\(indexPaths)") // 어떤 셀을 미리 준비시키는 것을 알 수 있음
@@ -230,7 +187,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.reuseIdentifier, for: indexPath) as? SearchCollectionViewCell else { return SearchCollectionViewCell() }
         
-        item.setCellData(indexPath: indexPath, list: list, genre: genre)
+        item.setCellData(type: .image, indexPath: indexPath, list: list, genre: genre)
         
         item.configureLabel()
         item.configureButton()
@@ -241,13 +198,15 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        // 상세화면으로 이동
+        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.reuseIdentifier) as! DetailViewController
+        
         // 데이터도 갖고가
         
+        detailVC.list2 = list
+        detailVC.row = indexPath.row
         
-        // 상세화면으로 이동
-        let pushVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.reuseIdentifier) as! DetailViewController
-        
-        self.navigationController?.pushViewController(pushVC, animated: true)
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }

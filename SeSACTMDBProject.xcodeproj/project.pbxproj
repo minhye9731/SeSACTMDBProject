@@ -29,6 +29,9 @@
 		0E4A95BE289D7D9B00FA3ACC /* OverViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */; };
 		0E4A95C1289D7E1500FA3ACC /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */; };
 		0E4A95C2289D7E1500FA3ACC /* MemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */; };
+		0E873A1728A1630A00D989F7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1628A1630A00D989F7 /* Endpoint.swift */; };
+		0E873A1928A163D400D989F7 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1828A163D400D989F7 /* URL+Extension.swift */; };
+		0E873A1B28A164DC00D989F7 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverViewTableViewCell.xib; sourceTree = "<group>"; };
 		0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberTableViewCell.xib; sourceTree = "<group>"; };
+		0E873A1628A1630A00D989F7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0E873A1828A163D400D989F7 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 		0E4A956D2899F6BA00FA3ACC /* SeSACTMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				0E873A1528A162EF00D989F7 /* Network */,
 				0E4A95A1289A824700FA3ACC /* Constant.swift */,
 				0E4A95892899FA8900FA3ACC /* Key */,
 				0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */,
@@ -140,6 +147,16 @@
 				0E4A959F289A7B7500FA3ACC /* TMDBModel.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		0E873A1528A162EF00D989F7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0E873A1628A1630A00D989F7 /* Endpoint.swift */,
+				0E873A1828A163D400D989F7 /* URL+Extension.swift */,
+				0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,10 +253,13 @@
 				0E4A958B2899FAA700FA3ACC /* APIKey.swift in Sources */,
 				0E4A9599289A754900FA3ACC /* SearchViewController.swift in Sources */,
 				0E4A95712899F6BA00FA3ACC /* SceneDelegate.swift in Sources */,
+				0E873A1928A163D400D989F7 /* URL+Extension.swift in Sources */,
 				0E4A95BD289D7D9B00FA3ACC /* OverViewTableViewCell.swift in Sources */,
 				0E4A95A0289A7B7500FA3ACC /* TMDBModel.swift in Sources */,
 				0E4A95C1289D7E1500FA3ACC /* MemberTableViewCell.swift in Sources */,
 				0E4A959C289A75A800FA3ACC /* SearchCollectionViewCell.swift in Sources */,
+				0E873A1B28A164DC00D989F7 /* TMDBAPIManager.swift in Sources */,
+				0E873A1728A1630A00D989F7 /* Endpoint.swift in Sources */,
 				0E4A95B6289BB2D700FA3ACC /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

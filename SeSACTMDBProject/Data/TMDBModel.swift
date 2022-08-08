@@ -12,6 +12,7 @@ struct TMDBModel {
     let releaseDt: String
     let genreID: Int
     let posterImageView: String
+    let backdropImageView: String
     let rate: Double
     let name: String
     let overview: String
@@ -19,12 +20,24 @@ struct TMDBModel {
     
 }
 
-// MARK: - MemberResponse
+// MARK: - genre
+struct GenreModel {
+    
+    static let shared = GenreModel()
+    
+    var genreDB: [Int: String] = [:]
+    
+    mutating func appendGenreDT(value: String, key: Int) {
+        genreDB.updateValue(value, forKey: key)
+    }
+    
+}
 
+// MARK: - MemberResponse
 struct Cast: Decodable {
     let name: String
     let character: String
-    let profilePath: String
+    let profilePath: String?
 }
 
 // MARK: - Cast
