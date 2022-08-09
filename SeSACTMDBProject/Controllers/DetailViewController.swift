@@ -15,14 +15,16 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
-    var list2 : [TMDBModel] = []
+    var list2: [TMDBModel] = []
     var row: Int = 0
+    var castList2: [Int : [Cast] ] = [:]
+    var crewList2: [Int : [Crew] ] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavi()
-        configureProfile(row: row)
+        configureProfile(type: .image, row: row)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,19 +48,19 @@ class DetailViewController: UIViewController {
         
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
-        
     }
+    
     // MARK: - 프로필 화면 설정
-    func configureProfile(row: Int) {
+    func configureProfile(type: Endpoint, row: Int) {
         nameLabel.text = list2[row].name
         nameLabel.textColor = .white
         nameLabel.font = .boldSystemFont(ofSize: 24)
         
-        let backURL = URL(string: list2[row].backdropImageView)
+        let backURL = URL(string: type.requestURL + list2[row].backdropImageView)
         backdropImageView.kf.setImage(with: backURL)
         backdropImageView.contentMode = .scaleAspectFill
         
-        let profileURL = URL(string: list2[row].posterImageView)
+        let profileURL = URL(string: type.requestURL + list2[row].posterImageView)
         posterImageView.kf.setImage(with: profileURL)
         posterImageView.contentMode = .scaleAspectFill
     }

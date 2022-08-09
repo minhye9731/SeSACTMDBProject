@@ -48,8 +48,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
         self.castListLabel.text = cast[programID]?.map { $0.name }.joined(separator: ", ")
     }
     
-    
-    
     func configureLabel() {
         releaseDtLabel.font = .systemFont(ofSize: 14)
         releaseDtLabel.textColor = .systemGray2
@@ -103,10 +101,5 @@ class SearchCollectionViewCell: UICollectionViewCell {
         posterView.layer.shadowOpacity = 1.0
         posterView.layer.shadowOffset = CGSize.zero
         posterView.layer.shadowRadius = 8
-        
-        
-        
     }
-    
-    
 }

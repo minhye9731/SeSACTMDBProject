@@ -16,10 +16,10 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var list : [TMDBModel] = []
+    var list: [TMDBModel] = []
     var genre = GenreModel.shared
-    var castList : [Int : [Cast] ] = [:]
-    var crewList : [Int : [Crew] ] = [:]
+    var castList: [Int : [Cast] ] = [:]
+    var crewList: [Int : [Crew] ] = [:]
     
     var startPage = 1
     var totalCount = 0
@@ -188,12 +188,11 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // 상세화면으로 이동
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.reuseIdentifier) as! DetailViewController
         
-        // 데이터도 갖고가
-        
         detailVC.list2 = list
+        detailVC.castList2 = castList
+        detailVC.crewList2 = crewList
         detailVC.row = indexPath.row
         
         self.navigationController?.pushViewController(detailVC, animated: true)
