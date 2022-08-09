@@ -111,9 +111,6 @@ class TMDBAPIManager {
                 
                 completionHandler(castDataArray, crewDataArray)
                 
-                print(castDataArray)
-                print(crewDataArray)
-                
             case .failure(let error):
                 print(error)
             }

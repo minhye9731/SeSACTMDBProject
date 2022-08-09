@@ -100,9 +100,6 @@ class SearchViewController: UIViewController {
             
             self.fetchCreditsData(tvDT: self.list)
             
-            print(self.castList)
-            print(self.crewList)
-            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -193,6 +190,10 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         detailVC.list2 = list
         detailVC.castList2 = castList
         detailVC.crewList2 = crewList
+        
+        
+        detailVC.castDataArray = castList[list[indexPath.row].id]!
+        detailVC.crewDataArray = crewList[list[indexPath.row].id]!
         detailVC.row = indexPath.row
         
         self.navigationController?.pushViewController(detailVC, animated: true)

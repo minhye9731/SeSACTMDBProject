@@ -20,6 +20,9 @@ class DetailViewController: UIViewController {
     var castList2: [Int : [Cast] ] = [:]
     var crewList2: [Int : [Crew] ] = [:]
     
+    var castDataArray: [Cast] = []
+    var crewDataArray: [Crew] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,9 +32,9 @@ class DetailViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(OverViewTableViewCell.self, forCellReuseIdentifier: OverViewTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: OverViewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverViewTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: MemberTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MemberTableViewCell.reuseIdentifier)
 
-        tableView.register(MemberTableViewCell.self, forCellReuseIdentifier: MemberTableViewCell.reuseIdentifier)
     }
     
     // MARK: - Navi 설정
@@ -66,7 +69,6 @@ class DetailViewController: UIViewController {
     }
 }
 
-
 // MARK: - tableview 설정
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -88,9 +90,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 2 // cast number
+            return castDataArray.count
         } else {
-            return 2 //  crew number
+            return crewDataArray.count
         }
     }
     
@@ -99,25 +101,28 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let overViewCell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.reuseIdentifier, for: indexPath) as! OverViewTableViewCell
             
-            overViewCell.overViewLabel?.text = "test입니다." // test
+            overViewCell.overViewLabel?.text = list2[row].overview
+            
             return overViewCell
         } else if indexPath.section == 1 {
-            // membercell에 CAST 정보 넣기
             let castCell = tableView.dequeueReusableCell(withIdentifier: MemberTableViewCell.reuseIdentifier, for: indexPath) as! MemberTableViewCell
             
-            castCell.profileImageView?.tintColor = .blue // test
-            castCell.memberNameLabel?.text = "공유" // test
-            castCell.memberDetailLabel?.text = "도깨비" // test
+            castCell.setCastData(data: castDataArray[indexPath.row], type: .image)
+            
             return castCell
         } else {
             // membercell에 CREW 정보 넣기
             let crewCell = tableView.dequeueReusableCell(withIdentifier: MemberTableViewCell.reuseIdentifier, for: indexPath) as! MemberTableViewCell
             
-            crewCell.profileImageView?.tintColor = .red // test
+            crewCell.profileImageView.backgroundColor = .red // test
             crewCell.memberNameLabel?.text = "홍길동" // test
             crewCell.memberDetailLabel?.text = "감독" // test
             return crewCell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 200 : 100
     }
     
 }

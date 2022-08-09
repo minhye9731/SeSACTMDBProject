@@ -8,10 +8,15 @@
 import UIKit
 
 class OverViewTableViewCell: UITableViewCell {
-    
-    
     @IBOutlet weak var overViewLabel: UILabel!
     
-
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureLabel()
+    }
     
+    func configureLabel() {
+        overViewLabel.textColor = .black
+        overViewLabel.font = .boldSystemFont(ofSize: 16)
+    }
 }
