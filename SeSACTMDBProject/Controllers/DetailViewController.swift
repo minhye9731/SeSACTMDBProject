@@ -114,9 +114,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             // membercell에 CREW 정보 넣기
             let crewCell = tableView.dequeueReusableCell(withIdentifier: MemberTableViewCell.reuseIdentifier, for: indexPath) as! MemberTableViewCell
             
-            crewCell.profileImageView.backgroundColor = .red // test
-            crewCell.memberNameLabel?.text = "홍길동" // test
-            crewCell.memberDetailLabel?.text = "감독" // test
+            crewCell.setCrewData(data: crewDataArray[indexPath.row], type: .image)
+            
             return crewCell
         }
     }

@@ -43,7 +43,7 @@ struct Cast: Decodable {
 // MARK: - Cast
 struct Crew: Decodable {
     let name: String
-    let profilePath: String
+    let profilePath: String?
     let department: String
     let job: String
 }

@@ -42,4 +42,16 @@ class MemberTableViewCell: UITableViewCell {
         profileImageView.kf.setImage(with: profileURL)
     }
     
+    func setCrewData(data: Crew, type: Endpoint) {
+        memberNameLabel.text = data.name
+        memberDetailLabel.text = "\(data.department) / \(data.job)"
+        
+        let urlString = data.profilePath != nil ? (type.requestURL + data.profilePath!) : "https://icon-library.com/images/unknown-person-icon/unknown-person-icon-4.jpg"
+        
+        guard let profileURL = URL(string: urlString) else { return }
+        
+        profileImageView.kf.setImage(with: profileURL)
+        // 아무도없을때 기본이미지 설정 재확인 및 수정 필요
+    }
+    
 }
