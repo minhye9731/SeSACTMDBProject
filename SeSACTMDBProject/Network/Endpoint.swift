@@ -12,7 +12,7 @@ enum Endpoint {
     case trend
     case image
     case genre
-    case member
+    case credits
     
     var requestURL: String {
         switch self {
@@ -22,7 +22,7 @@ enum Endpoint {
             return "https://image.tmdb.org/t/p/original"
         case .genre:
             return URL.makeEndPointString("genre/tv/list?")
-        case .member:
+        case .credits:
             return URL.makeEndPointString("tv/")
             
         }

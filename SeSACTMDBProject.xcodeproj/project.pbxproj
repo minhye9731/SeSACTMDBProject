@@ -33,7 +33,7 @@
 		0E873A1928A163D400D989F7 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1828A163D400D989F7 /* URL+Extension.swift */; };
 		0E873A1B28A164DC00D989F7 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */; };
 		0EF3855A28A2468D005BBA0A /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF3855928A2468D005BBA0A /* PosterView.swift */; };
-		0EF3855E28A24763005BBA0A /* PosterView..xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF3855D28A24763005BBA0A /* PosterView..xib */; };
+		0EF3855E28A24763005BBA0A /* PosterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF3855D28A24763005BBA0A /* PosterView.xib */; };
 		0EF3856028A2495F005BBA0A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF3855F28A2495F005BBA0A /* ListViewController.swift */; };
 		0EF3856228A24BAE005BBA0A /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF3856128A24BAE005BBA0A /* ListTableViewCell.swift */; };
 		0EF3856528A2512F005BBA0A /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF3856328A2512F005BBA0A /* PosterCollectionViewCell.swift */; };
@@ -64,7 +64,7 @@
 		0E873A1828A163D400D989F7 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		0EF3855928A2468D005BBA0A /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
-		0EF3855D28A24763005BBA0A /* PosterView..xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterView..xib; sourceTree = "<group>"; };
+		0EF3855D28A24763005BBA0A /* PosterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterView.xib; sourceTree = "<group>"; };
 		0EF3855F28A2495F005BBA0A /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0EF3856128A24BAE005BBA0A /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0EF3856328A2512F005BBA0A /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -107,12 +107,12 @@
 		0E4A956D2899F6BA00FA3ACC /* SeSACTMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */,
+				0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */,
+				0E4A95A1289A824700FA3ACC /* Constant.swift */,
 				0EF3855428A2456E005BBA0A /* View */,
 				0E873A1528A162EF00D989F7 /* Network */,
-				0E4A95A1289A824700FA3ACC /* Constant.swift */,
 				0E4A95892899FA8900FA3ACC /* Key */,
-				0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */,
-				0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */,
 				0E4A959E289A7B6000FA3ACC /* Data */,
 				0E4A9596289A748900FA3ACC /* Models */,
 				0E4A9597289A74A100FA3ACC /* Controllers */,
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				0EF3855928A2468D005BBA0A /* PosterView.swift */,
-				0EF3855D28A24763005BBA0A /* PosterView..xib */,
+				0EF3855D28A24763005BBA0A /* PosterView.xib */,
 				0EF3856128A24BAE005BBA0A /* ListTableViewCell.swift */,
 				0EF3856328A2512F005BBA0A /* PosterCollectionViewCell.swift */,
 				0EF3856428A2512F005BBA0A /* PosterCollectionViewCell.xib */,
@@ -263,7 +263,7 @@
 				0E4A95C2289D7E1500FA3ACC /* MemberTableViewCell.xib in Resources */,
 				0E4A959D289A75A800FA3ACC /* SearchCollectionViewCell.xib in Resources */,
 				0E4A95782899F6BC00FA3ACC /* Assets.xcassets in Resources */,
-				0EF3855E28A24763005BBA0A /* PosterView..xib in Resources */,
+				0EF3855E28A24763005BBA0A /* PosterView.xib in Resources */,
 				0EF3856628A2512F005BBA0A /* PosterCollectionViewCell.xib in Resources */,
 				0E4A95762899F6BA00FA3ACC /* Main.storyboard in Resources */,
 			);

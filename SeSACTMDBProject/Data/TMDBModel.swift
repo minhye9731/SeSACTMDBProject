@@ -44,12 +44,6 @@ struct Cast: Decodable {
 struct Crew: Decodable {
     let name: String
     let profilePath: String
-    let department: Department
+    let department: String
     let job: String
-}
-
-enum Department: String, Decodable {
-    case acting = "Acting"
-    case production = "Production"
-    case writing = "Writing"
 }

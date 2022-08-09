@@ -18,8 +18,8 @@ class ListTableViewCell: UITableViewCell {
     }
     
     func setupUI() {
-        titleLabel.font = .boldSystemFont(ofSize: 16)
-        titleLabel.backgroundColor = .red
+        titleLabel.font = .boldSystemFont(ofSize: 20)
+        titleLabel.backgroundColor = .clear
         
         contentCollectionView.backgroundColor = .blue
         contentCollectionView.collectionViewLayout = collectionViewLayout()

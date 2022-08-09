@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVT-qy-58J" customClass="PosterView" customModule="SeSACTMDBProject" customModuleProvider="target">
-                        <rect key="frame" x="-95" y="-44" width="240" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </subviews>

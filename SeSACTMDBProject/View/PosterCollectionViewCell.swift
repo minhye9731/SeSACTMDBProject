@@ -18,9 +18,9 @@ class PosterCollectionViewCell: UICollectionViewCell {
     }
     
     func setupUI() {
-        posterView.backgroundColor = .systemGreen
-        posterView.posterImageView.backgroundColor = .lightGray
-        posterView.posterImageView.layer.cornerRadius = 10
+        posterView.backgroundColor = .clear
+        posterView.posterImageView.backgroundColor = .clear
+        posterView.posterImageView.layer.cornerRadius = 8
     }
 
 }

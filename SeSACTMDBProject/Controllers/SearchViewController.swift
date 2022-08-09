@@ -18,8 +18,8 @@ class SearchViewController: UIViewController {
     
     var list : [TMDBModel] = []
     var genre = GenreModel.shared
-    var castList : [Int : [[Cast]] ] = [:]
-    var crewList : [Int : [[Crew]] ] = [:]
+    var castList : [Int : [Cast] ] = [:]
+    var crewList : [Int : [Crew] ] = [:]
     
     var startPage = 1
     var totalCount = 0
@@ -67,7 +67,7 @@ class SearchViewController: UIViewController {
     func configureNaviBarButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: ImageName.hamburgerMenu.rawValue), style: .plain, target: self, action: #selector(showSideMenu))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: ImageName.magnifyingGlass.rawValue), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: ImageName.magnifyingGlass.rawValue), style: .plain, target: self, action: #selector(showListPage))
     }
     
     @objc
@@ -80,12 +80,28 @@ class SearchViewController: UIViewController {
         self.present(sideVC!, animated: true, completion: nil)
     }
     
+    // MARK: - 임시로 화면 이동 기능 넣음 (화면 확인 목적)
+    @objc
+    func showListPage() {
+        print("ListViewController 페이지 보여주기")
+        
+        let listVC = self.storyboard?.instantiateViewController(identifier: "ListViewController")
+        listVC?.modalTransitionStyle = .coverVertical
+        listVC?.modalPresentationStyle = .pageSheet
+        self.present(listVC!, animated: true, completion: nil)
+    }
+
 // MARK: - API 통신 (TV 프로그램)
     func fetchTVData(startPage: Int) {
         TMDBAPIManager.shared.fetchTVAPI(type: .trend, startPage: startPage) { totalCount, trendDataArray in
             
             self.totalCount = totalCount
             self.list.append(contentsOf: trendDataArray)
+            
+            self.fetchCreditsData(tvDT: self.list)
+            
+            print(self.castList)
+            print(self.crewList)
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -111,44 +127,18 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - API 통신 (cast, crew)
-    func fetchMemberData(id: Int) {
+    func fetchCreditsData(tvDT: [TMDBModel]) {
         
-        let url = EndPoint.memberURL +  "\(id)/credits?api_key=\(APIKey.BOXOFFICE)&language=en-US"
-        
-        AF.request(url, method: .get).validate().responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                // cast
-                for cast in json["cast"].arrayValue {
-                    
-                    let realName = cast["name"].stringValue
-                    let characterName = cast["character"].stringValue
-                    let profileUrl = EndPoint.imageURL + cast["profile_path"].stringValue
-
-                    let cast = Cast(name: realName, character: characterName, profilePath: profileUrl)
-                    
-                    
-                    
-//                    self.castList[id] = [cast]
-                }
-                
-                // crew
-                
-                
-                
-                self.collectionView.reloadData()
-                
-//                print(self.castList)
-                
-            case .failure(let error):
-                print(error)
-            }
+        for program in 0..<tvDT.count {
             
+            TMDBAPIManager.shared.fetchCreditsAPI(type: .credits, tvDataID: tvDT[program].id) { castDataArray, crewDataArray in
+                
+                self.castList[tvDT[program].id] = castDataArray
+                self.crewList[tvDT[program].id] = crewDataArray
+            }
         }
-        
     }
+    
     
 }
 
@@ -187,7 +177,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.reuseIdentifier, for: indexPath) as? SearchCollectionViewCell else { return SearchCollectionViewCell() }
         
-        item.setCellData(type: .image, indexPath: indexPath, list: list, genre: genre)
+        item.setCellData(type: .image, indexPath: indexPath, list: list, genre: genre, cast: castList)
         
         item.configureLabel()
         item.configureButton()
