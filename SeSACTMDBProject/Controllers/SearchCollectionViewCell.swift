@@ -28,7 +28,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var arrowButton: UIButton!
     
     
-    func setCellData(type: Endpoint, indexPath: IndexPath, list: [TMDBModel], genre: GenreModel) {
+    func setCellData(type: Endpoint, indexPath: IndexPath, list: [TMDBModel], genre: GenreModel, cast: [Int : [Cast]]) {
         let digit: Double = pow(10, 1)
         let rateValue: Double = list[indexPath.row].rate
         let genreid: Int = list[indexPath.row].genreID
@@ -44,10 +44,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
         self.posterImageView.kf.setImage(with: url)
         self.posterImageView.contentMode = .scaleAspectFill
         
-        // 해당 영화에 출연한 배우 castlist 나타내기
         let programID = list[indexPath.row].id
-//        self.castListLabel.text = castlist[indexPath.row][]
-        
+        self.castListLabel.text = cast[programID]?.map { $0.name }.joined(separator: ", ")
     }
     
     
