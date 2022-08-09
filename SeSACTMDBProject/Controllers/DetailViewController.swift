@@ -17,9 +17,6 @@ class DetailViewController: UIViewController {
     
     var list2: [TMDBModel] = []
     var row: Int = 0
-    var castList2: [Int : [Cast] ] = [:]
-    var crewList2: [Int : [Crew] ] = [:]
-    
     var castDataArray: [Cast] = []
     var crewDataArray: [Crew] = []
     
