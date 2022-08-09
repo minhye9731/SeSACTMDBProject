@@ -16,6 +16,7 @@ class TMDBAPIManager {
     
     private init() { }
     
+    // MARK: - 트렌드 api
     func fetchTVAPI(type: Endpoint, startPage: Int, completionHandler: @escaping(Int, [TMDBModel]) -> ()) {
         
         print(#function)
@@ -54,6 +55,7 @@ class TMDBAPIManager {
         }
     }
     
+    // MARK: - genre api
     func fetchGenreAPI(type: Endpoint, completionHandler: @escaping(JSON) -> ()) {
         
         print(#function)
@@ -73,6 +75,16 @@ class TMDBAPIManager {
             }
         }
     }
+    
+    // MARK: - cast, crew api
+    
+    
+    
+    
+    // MARK: - 영상링크 api
+    
+    
+    
     
 }
 
