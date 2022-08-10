@@ -6,20 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListViewController: UIViewController {
 
     @IBOutlet weak var mainTableView: UITableView!
-    
-    var headers = ["아는 와이프와 비슷한 콘텐츠", "미스터 선샤인과 비슷한 콘텐츠", "액션 SF", "미국TV프로그램"]
-    
-//    let numberList: [[Int]] = [
-//        [Int](100...110),
-//        [Int](55...75),
-//        [Int](5000...5006),
-//        [Int](81...90),
-//        [Int](21...31)
-//        ]
+
+//    var similarTVListName: [[String]] = [[]]
+    var similarTVList: [[String]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +23,15 @@ class ListViewController: UIViewController {
         
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        
+        TMDBAPIManager.shared.requestImage { value in
+            //1. 네트워크 통신 2.배열 생성 3. 배열 담기 4. 뷰 등에 표현
+            // 뷰 갱신!
+            self.similarTVList = value
+            self.mainTableView.reloadData()
+            print(self.similarTVList)
+        }
     }
-    
 }
 
 
@@ -38,8 +39,7 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return headers.count
-//        return numberList.count
+        return similarTVList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,20 +53,18 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell", for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
         
         cell.backgroundColor = .clear
-        cell.contentCollectionView.backgroundColor = .clear // 왜 table cell 안에서 컬렉션뷰 셀 배경 정하고, 여기서 한번 더 하지??
+        cell.titleLabel.text = "\(TMDBAPIManager.shared.originTVShowList[indexPath.section].0) 와 비슷한 프로그램"
         
+        cell.contentCollectionView.backgroundColor = .clear
+        cell.titleLabel.textColor = .white
         cell.contentCollectionView.delegate = self
         cell.contentCollectionView.dataSource = self
-        cell.contentCollectionView.tag = indexPath.section // 섹션별 색상 다르게 설정하려고 tag를 준다. 각 셀 구분 짓기!
+        cell.contentCollectionView.tag = indexPath.section // 각 셀 구분 짓기!
         cell.contentCollectionView.register(UINib(nibName: "PosterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PosterCollectionViewCell")
         
         cell.titleLabel.tag = indexPath.section // 타이틀 레이블에도 테그를 줘봄
-        cell.titleLabel.text = "\(headers[indexPath.section])"
-        
-        
-        
-        // 인덱스 오류 해결책?
-//        cell.contentCollectionView.reloadData()
+
+        cell.contentCollectionView.reloadData() // 인덱스 오류 해결책
         
         return cell
     }
@@ -83,7 +81,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // 포스터 데이터 넣자
+        return similarTVList[collectionView.tag].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -91,16 +89,16 @@ extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCollectionViewCell", for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
         
+        cell.posterView.backgroundColor = .clear
         cell.posterView.posterImageView.backgroundColor = .black
-        
-        cell.posterView.posterImageView.image = UIImage(named: "겨울왕국2")
+        cell.posterView.posterImageView.contentMode = .scaleAspectFill
         cell.posterView.contentLabel.textColor = .white
-//        cell.posterView.contentLabel.text = "\(numberList[collectionView.tag][indexPath.item])" // 에러해결 ㄴㄴ
         
+        let url = URL(string: "\(TMDBAPIManager.shared.imageURL)\(similarTVList[collectionView.tag][indexPath.item])")
+        cell.posterView.posterImageView.kf.setImage(with: url)
         
+        cell.posterView.contentLabel.text = ""
         
         return cell
     }
-
-
 }

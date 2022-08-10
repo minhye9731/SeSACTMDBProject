@@ -48,6 +48,9 @@
                                     <constraint firstAttribute="width" constant="32" id="qFd-9w-MdA"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="linkButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="mwz-Lr-Z21"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHb-kb-ntR">
                                 <rect key="frame" x="16" y="219" width="36" height="24"/>
@@ -162,7 +165,7 @@
                 <outlet property="castListLabel" destination="eya-IK-RuI" id="UBw-kz-HkY"/>
                 <outlet property="detailLabel" destination="d1A-T7-4Ia" id="5rA-ga-bWv"/>
                 <outlet property="genreLabel" destination="EuF-ma-TMV" id="fwA-GP-D8p"/>
-                <outlet property="linkIconButton" destination="JIp-Bj-RK9" id="REK-95-L0m"/>
+                <outlet property="linkButton" destination="JIp-Bj-RK9" id="REK-95-L0m"/>
                 <outlet property="nameLabel" destination="aHS-Sm-En9" id="nlD-Ga-Xmv"/>
                 <outlet property="posterImageView" destination="wLa-6m-mrV" id="7Ug-QM-Ahu"/>
                 <outlet property="posterView" destination="0MN-01-moC" id="ATv-Qv-67a"/>

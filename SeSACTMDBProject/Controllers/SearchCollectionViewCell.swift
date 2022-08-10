@@ -16,7 +16,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var posterImageView: UIImageView!
     
-    @IBOutlet weak var linkIconButton: UIButton!
+    @IBOutlet weak var linkButton: UIButton!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var rateNumberLabel: UILabel!
     
@@ -78,10 +78,10 @@ class SearchCollectionViewCell: UICollectionViewCell {
     }
     
     func configureButton() {
-        linkIconButton.setImage(UIImage(systemName: "paperclip"), for: .normal)
-        linkIconButton.tintColor = .black
-        linkIconButton.backgroundColor = .white
-        linkIconButton.layer.cornerRadius = linkIconButton.bounds.height / 2
+        linkButton.setImage(UIImage(systemName: "paperclip"), for: .normal)
+        linkButton.tintColor = .black
+        linkButton.backgroundColor = .white
+        linkButton.layer.cornerRadius = linkButton.bounds.height / 2
         
         arrowButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         arrowButton.tintColor = .darkGray
@@ -102,4 +102,18 @@ class SearchCollectionViewCell: UICollectionViewCell {
         posterView.layer.shadowOffset = CGSize.zero
         posterView.layer.shadowRadius = 8
     }
+    
+    
+    @IBAction func linkButtonTapped(_ sender: UIButton) {
+        // 일단은 화면만 이동
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let webVC = storyboard.instantiateViewController(identifier: "WebViewController")
+        webVC.modalTransitionStyle = .coverVertical
+        webVC.modalPresentationStyle = .pageSheet
+        self.present(webVC, animated: true, completion: nil)
+        
+    }
+    
+    
+    
 }
