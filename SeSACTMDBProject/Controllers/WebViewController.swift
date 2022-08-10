@@ -12,12 +12,22 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
+    var programName: String = ""
     var destinationURL: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        openWebPage(url : destinationURL)
+        configureNavi()
+        
+        DispatchQueue.main.async {
+            self.openWebPage(url: self.destinationURL)
+        }
+    }
+    
+    func configureNavi() {
+        
+        self.navigationItem.title = "\(programName) 티저 보기"
     }
     
     func openWebPage(url: String) {

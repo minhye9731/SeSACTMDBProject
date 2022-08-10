@@ -193,7 +193,8 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             webVC.modalTransitionStyle = .coverVertical
             webVC.modalPresentationStyle = .pageSheet
             
-            webVC.destinationURL = self.keyURLList[self.list[indexPath.row].id]!
+            webVC.programName = self.list[indexPath.row].name
+            webVC.destinationURL = self.keyURLList[self.list[indexPath.row].id] ?? "https://www.youtube.com/watch?v=b1F2AVsJ05c"
             
             self.navigationController?.pushViewController(webVC, animated: true)
         }
