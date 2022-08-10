@@ -27,8 +27,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var arrowButton: UIButton!
     
-    // 링크버튼 이벤트를 처리해줄 클로저 만들기
-    var linkButtonAction : ( () -> Void) = {}
+    var linkButtonTapped : (() -> Void) = {}
     
     func setCellData(type: Endpoint, indexPath: IndexPath, list: [TMDBModel], genre: GenreModel, cast: [Int : [Cast]]) {
         let digit: Double = pow(10, 1)
@@ -84,8 +83,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         linkButton.tintColor = .black
         linkButton.backgroundColor = .white
         linkButton.layer.cornerRadius = linkButton.bounds.height / 2
-        // 링크버튼 클릭시 액션 설정
-        linkButton.addTarget(self, action: #selector(showWebView), for: .touchUpInside)
+        linkButton.addTarget(self, action: #selector(requestVideo), for: .touchUpInside)
         
         arrowButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         arrowButton.tintColor = .darkGray
@@ -107,9 +105,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         posterView.layer.shadowRadius = 8
     }
     
-    @objc
-    func showWebView() {
-        linkButtonAction()
+    @objc func requestVideo() {
+        linkButtonTapped()
     }
-    
 }

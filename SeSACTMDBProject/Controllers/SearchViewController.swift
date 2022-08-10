@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     var genre = GenreModel.shared
     var castList: [Int : [Cast] ] = [:]
     var crewList: [Int : [Crew] ] = [:]
-    var keyurlstr = ""
+    var keyURLList: [Int : String ] = [:]
     
     var startPage = 1
     var totalCount = 0
@@ -38,9 +38,9 @@ class SearchViewController: UIViewController {
         collectionView.register(UINib(nibName: SearchCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
         
         configureLayout()
+        
         fetchTVData(startPage: startPage)
         fetchGenreData()
-        
     }
     
 // MARK: - Navi 설정
@@ -81,7 +81,7 @@ class SearchViewController: UIViewController {
         self.present(sideVC!, animated: true, completion: nil)
     }
     
-    // MARK: - 임시로 화면 이동 기능 넣음 (화면 확인 목적)
+    // 임시로 화면 이동 기능 넣음 (화면 확인 목적)
     @objc
     func showListPage() {
         print("ListViewController 페이지 보여주기")
@@ -100,6 +100,7 @@ class SearchViewController: UIViewController {
             self.list.append(contentsOf: trendDataArray)
             
             self.fetchCreditsData(tvDT: self.list)
+            self.fetchVideoKeyData(tvDT: self.list)
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -127,7 +128,7 @@ class SearchViewController: UIViewController {
     // MARK: - API 통신 (cast, crew)
     func fetchCreditsData(tvDT: [TMDBModel]) {
         
-        for program in 0..<tvDT.count {
+        for program in 0..<(tvDT.count - 1) {
             
             TMDBAPIManager.shared.fetchCreditsAPI(type: .credits, tvDataID: tvDT[program].id) { castDataArray, crewDataArray in
                 
@@ -137,32 +138,34 @@ class SearchViewController: UIViewController {
         }
     }
     
-    
-}
-
-// MARK: - 페이지네이션
-extension SearchViewController:  UICollectionViewDataSourcePrefetching {
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    // MARK: - API 통신 (프로그램별 영상 key값)
+    func fetchVideoKeyData(tvDT: [TMDBModel]) {
         
-        for indexPath in indexPaths {
-            if list.count - 1 == indexPath.item && list.count < totalCount {
-                startPage += 1 // display 몇 개 하냐에 따라 더해주는 숫자는 다름
-//                fetchImage(query: searchBar.text!)
-                fetchTVData(startPage: startPage)
+        for program in 0..<(tvDT.count) {
+            
+            TMDBAPIManager.shared.fetchVideoAPI(type: .youtube, tvDataID: tvDT[program].id) { keyURLSting in
+                
+                self.keyURLList[tvDT[program].id] = keyURLSting
+                print("키값들 : \(self.keyURLList)")
             }
         }
-        print("===\(indexPaths)") // 어떤 셀을 미리 준비시키는 것을 알 수 있음
     }
     
-    // 취소: 직접 취소하는 기능을 구현해야 함
-    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        print("===실패\(indexPaths)")
-    }
-
+    // MARK: - link버튼 클릭시 액션
+//    @objc func linkButtonTapped(_ sender: UIButton) {
+//
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let webVC = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+//        webVC.modalTransitionStyle = .coverVertical
+//        webVC.modalPresentationStyle = .pageSheet
+//
+//        webVC
+//
+//        self.navigationController?.pushViewController(webVC, animated: true)
+//    }
+    
+    
 }
-
-
 
 // MARK: - collectionView 설정
 
@@ -181,28 +184,19 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         item.configureButton()
         item.configureView()
         
+        item.linkButton.tag = indexPath.row
+        
         // 클로저 구문으로 링크버튼 액션 구현!
-        // 데이터로 액션구현도 해야 할 듯?
-        item.linkButtonAction = {
-            // 네트워크 통신
-            TMDBAPIManager.shared.fetchVideoAPI(type: .youtube, tvDataID: 92782) { keyURLSting in
-                
-                self.keyurlstr = keyURLSting // 담기완료
-            }
+        item.linkButtonTapped = {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let webVC = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+            webVC.modalTransitionStyle = .coverVertical
+            webVC.modalPresentationStyle = .pageSheet
             
+            webVC.destinationURL = self.keyURLList[self.list[indexPath.row].id]!
             
-            // 화면이동
-            let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController")
-            webVC?.modalTransitionStyle = .coverVertical
-            webVC?.modalPresentationStyle = .pageSheet
-            
-            // keyurlstr를 넘겨주는 것에서 막힘!
-            
-            self.present(webVC!, animated: true, completion: nil)
+            self.navigationController?.pushViewController(webVC, animated: true)
         }
-        
-        
-        
         return item
     }
     
@@ -235,5 +229,26 @@ extension SearchViewController {
         layout.minimumInteritemSpacing = spacing
         
         collectionView.collectionViewLayout = layout
+    }
+}
+
+// MARK: - 페이지네이션
+extension SearchViewController:  UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+            if list.count - 1 == indexPath.item && list.count < totalCount {
+                startPage += 1 // display 몇 개 하냐에 따라 더해주는 숫자는 다름
+//                fetchImage(query: searchBar.text!)
+                fetchTVData(startPage: startPage)
+            }
+        }
+        print("===\(indexPaths)") // 어떤 셀을 미리 준비시키는 것을 알 수 있음
+    }
+    
+    // 취소: 직접 취소하는 기능을 구현해야 함
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        print("===실패\(indexPaths)")
     }
 }

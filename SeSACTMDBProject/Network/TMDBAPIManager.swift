@@ -118,7 +118,6 @@ class TMDBAPIManager {
     }
     
     // MARK: - 영상링크 api
-    
     func fetchVideoAPI(type: Endpoint, tvDataID: Int, completionHandler: @escaping(String) -> ()) {
         
         print(#function)

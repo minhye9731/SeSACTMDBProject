@@ -12,29 +12,20 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    var destinationURL: String = "https://www.apple.com" // 임시
+    var destinationURL: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        openWebPage(url : destinationURL)
         
+        openWebPage(url : destinationURL)
     }
     
     func openWebPage(url: String) {
-        guard let url = URL(string: url) else {
+        guard let url = URL(string: destinationURL) else {
             print("Invalid URL")
             return
         }
-        
-        
-        
         let request = URLRequest(url: url)
-        
-        
-        
         webView.load(request)
     }
-    
-
 }
