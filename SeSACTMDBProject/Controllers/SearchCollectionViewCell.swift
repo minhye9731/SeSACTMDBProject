@@ -27,6 +27,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var arrowButton: UIButton!
     
+    // 링크버튼 이벤트를 처리해줄 클로저 만들기
+    var linkButtonAction : ( () -> Void) = {}
     
     func setCellData(type: Endpoint, indexPath: IndexPath, list: [TMDBModel], genre: GenreModel, cast: [Int : [Cast]]) {
         let digit: Double = pow(10, 1)
@@ -82,6 +84,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
         linkButton.tintColor = .black
         linkButton.backgroundColor = .white
         linkButton.layer.cornerRadius = linkButton.bounds.height / 2
+        // 링크버튼 클릭시 액션 설정
+        linkButton.addTarget(self, action: #selector(showWebView), for: .touchUpInside)
         
         arrowButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         arrowButton.tintColor = .darkGray
@@ -103,17 +107,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
         posterView.layer.shadowRadius = 8
     }
     
-    
-    @IBAction func linkButtonTapped(_ sender: UIButton) {
-        // 일단은 화면만 이동
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let webVC = storyboard.instantiateViewController(identifier: "WebViewController")
-        webVC.modalTransitionStyle = .coverVertical
-        webVC.modalPresentationStyle = .pageSheet
-        self.present(webVC, animated: true, completion: nil)
-        
+    @objc
+    func showWebView() {
+        linkButtonAction()
     }
-    
-    
     
 }

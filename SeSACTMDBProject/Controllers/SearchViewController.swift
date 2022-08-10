@@ -180,6 +180,18 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         item.configureButton()
         item.configureView()
         
+        // 클로저 구문으로 링크버튼 액션 구현!
+        // 데이터로 액션구현도 해야 할 듯?
+        item.linkButtonAction = {
+            // 화면이동
+            let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController")
+            webVC?.modalTransitionStyle = .coverVertical
+            webVC?.modalPresentationStyle = .pageSheet
+            self.present(webVC!, animated: true, completion: nil)
+        }
+        
+        
+        
         return item
     }
     
@@ -188,10 +200,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.reuseIdentifier) as! DetailViewController
         
         detailVC.list2 = list
-        detailVC.castList2 = castList
-        detailVC.crewList2 = crewList
-        
-        
         detailVC.castDataArray = castList[list[indexPath.row].id]!
         detailVC.crewDataArray = crewList[list[indexPath.row].id]!
         detailVC.row = indexPath.row

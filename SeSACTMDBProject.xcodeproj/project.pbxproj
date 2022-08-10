@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0E70EB28A3B2B20011467E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E70EA28A3B2B20011467E /* WebViewController.swift */; };
 		0E4A956F2899F6BA00FA3ACC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */; };
 		0E4A95712899F6BA00FA3ACC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */; };
 		0E4A95762899F6BA00FA3ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95742899F6BA00FA3ACC /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0E70EA28A3B2B20011467E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0E4A956B2899F6BA00FA3ACC /* SeSACTMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				0E4A95BB289D7D9B00FA3ACC /* OverViewTableViewCell.swift */,
 				0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */,
 				0EF3855F28A2495F005BBA0A /* ListViewController.swift */,
+				0E0E70EA28A3B2B20011467E /* WebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E4A95A2289A824700FA3ACC /* Constant.swift in Sources */,
+				0E0E70EB28A3B2B20011467E /* WebViewController.swift in Sources */,
 				0EF3856228A24BAE005BBA0A /* ListTableViewCell.swift in Sources */,
 				0E4A956F2899F6BA00FA3ACC /* AppDelegate.swift in Sources */,
 				0E4A958B2899FAA700FA3ACC /* APIKey.swift in Sources */,
