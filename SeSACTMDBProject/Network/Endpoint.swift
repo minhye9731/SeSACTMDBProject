@@ -13,6 +13,7 @@ enum Endpoint {
     case image
     case genre
     case credits
+    case youtube
     
     var requestURL: String {
         switch self {
@@ -24,6 +25,8 @@ enum Endpoint {
             return URL.makeEndPointString("genre/tv/list?")
         case .credits:
             return URL.makeEndPointString("tv/")
+        case .youtube:
+            return "https://www.youtube.com/watch?v="
             
         }
     }

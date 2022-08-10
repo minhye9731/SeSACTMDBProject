@@ -20,6 +20,7 @@ class SearchViewController: UIViewController {
     var genre = GenreModel.shared
     var castList: [Int : [Cast] ] = [:]
     var crewList: [Int : [Crew] ] = [:]
+    var keyurlstr = ""
     
     var startPage = 1
     var totalCount = 0
@@ -183,10 +184,20 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         // 클로저 구문으로 링크버튼 액션 구현!
         // 데이터로 액션구현도 해야 할 듯?
         item.linkButtonAction = {
+            // 네트워크 통신
+            TMDBAPIManager.shared.fetchVideoAPI(type: .youtube, tvDataID: 92782) { keyURLSting in
+                
+                self.keyurlstr = keyURLSting // 담기완료
+            }
+            
+            
             // 화면이동
             let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController")
             webVC?.modalTransitionStyle = .coverVertical
             webVC?.modalPresentationStyle = .pageSheet
+            
+            // keyurlstr를 넘겨주는 것에서 막힘!
+            
             self.present(webVC!, animated: true, completion: nil)
         }
         

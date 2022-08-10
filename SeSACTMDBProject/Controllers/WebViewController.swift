@@ -26,7 +26,13 @@ class WebViewController: UIViewController {
             print("Invalid URL")
             return
         }
+        
+        
+        
         let request = URLRequest(url: url)
+        
+        
+        
         webView.load(request)
     }
     

@@ -119,14 +119,30 @@ class TMDBAPIManager {
     
     // MARK: - 영상링크 api
     
+    func fetchVideoAPI(type: Endpoint, tvDataID: Int, completionHandler: @escaping(String) -> ()) {
+        
+        print(#function)
+        
+        let url = URL.baseURL + "tv/\(tvDataID)/videos?api_key=\(APIKey.BOXOFFICE)&language=en-US#"
+        
+        AF.request(url, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let value):
+                
+                let json = JSON(value)
+                
+                let key = json["results"][0]["key"].stringValue
+                let keyURLSting = type.requestURL + key
+                
+                completionHandler(keyURLSting)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
-    
-    
-    
-    
-    
-    
-    
+ 
     // MARK: - 유사 tv 프로그램 api
     
     let originTVShowList: [(String, Int)] = [
