@@ -30,6 +30,8 @@
 		0E4A95BE289D7D9B00FA3ACC /* OverViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */; };
 		0E4A95C1289D7E1500FA3ACC /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */; };
 		0E4A95C2289D7E1500FA3ACC /* MemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */; };
+		0E61757C28A4EBD200A2A792 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61757B28A4EBD200A2A792 /* MapViewController.swift */; };
+		0E61757E28A4F2AF00A2A792 /* TheaterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61757D28A4F2AF00A2A792 /* TheaterData.swift */; };
 		0E873A1728A1630A00D989F7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1628A1630A00D989F7 /* Endpoint.swift */; };
 		0E873A1928A163D400D989F7 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1828A163D400D989F7 /* URL+Extension.swift */; };
 		0E873A1B28A164DC00D989F7 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */; };
@@ -62,6 +64,8 @@
 		0E4A95BC289D7D9B00FA3ACC /* OverViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverViewTableViewCell.xib; sourceTree = "<group>"; };
 		0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		0E4A95C0289D7E1500FA3ACC /* MemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberTableViewCell.xib; sourceTree = "<group>"; };
+		0E61757B28A4EBD200A2A792 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0E61757D28A4F2AF00A2A792 /* TheaterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterData.swift; sourceTree = "<group>"; };
 		0E873A1628A1630A00D989F7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0E873A1828A163D400D989F7 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		0E873A1A28A164DC00D989F7 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				0E4A95BF289D7E1500FA3ACC /* MemberTableViewCell.swift */,
 				0EF3855F28A2495F005BBA0A /* ListViewController.swift */,
 				0E0E70EA28A3B2B20011467E /* WebViewController.swift */,
+				0E61757B28A4EBD200A2A792 /* MapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				0E4A959F289A7B7500FA3ACC /* TMDBModel.swift */,
+				0E61757D28A4F2AF00A2A792 /* TheaterData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 				0E4A958B2899FAA700FA3ACC /* APIKey.swift in Sources */,
 				0E4A9599289A754900FA3ACC /* SearchViewController.swift in Sources */,
 				0E4A95712899F6BA00FA3ACC /* SceneDelegate.swift in Sources */,
+				0E61757C28A4EBD200A2A792 /* MapViewController.swift in Sources */,
 				0EF3855A28A2468D005BBA0A /* PosterView.swift in Sources */,
 				0E873A1928A163D400D989F7 /* URL+Extension.swift in Sources */,
 				0E4A95BD289D7D9B00FA3ACC /* OverViewTableViewCell.swift in Sources */,
@@ -297,6 +304,7 @@
 				0EF3856528A2512F005BBA0A /* PosterCollectionViewCell.swift in Sources */,
 				0E873A1728A1630A00D989F7 /* Endpoint.swift in Sources */,
 				0E4A95B6289BB2D700FA3ACC /* DetailViewController.swift in Sources */,
+				0E61757E28A4F2AF00A2A792 /* TheaterData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

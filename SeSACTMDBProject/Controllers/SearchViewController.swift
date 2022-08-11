@@ -84,12 +84,18 @@ class SearchViewController: UIViewController {
     // 임시로 화면 이동 기능 넣음 (화면 확인 목적)
     @objc
     func showListPage() {
-        print("ListViewController 페이지 보여주기")
+//        print("ListViewController 페이지 보여주기")
+//
+//        let listVC = self.storyboard?.instantiateViewController(identifier: "ListViewController")
+//        listVC?.modalTransitionStyle = .coverVertical
+//        listVC?.modalPresentationStyle = .pageSheet
+//        self.present(listVC!, animated: true, completion: nil)
         
-        let listVC = self.storyboard?.instantiateViewController(identifier: "ListViewController")
-        listVC?.modalTransitionStyle = .coverVertical
-        listVC?.modalPresentationStyle = .pageSheet
-        self.present(listVC!, animated: true, completion: nil)
+        print("MapViewController 페이지 보여주기")
+        
+        let mapVC = self.storyboard?.instantiateViewController(withIdentifier: MapViewController.reuseIdentifier) as! MapViewController
+        
+        self.navigationController?.pushViewController(mapVC, animated: true)
     }
 
 // MARK: - API 통신 (TV 프로그램)
@@ -150,19 +156,6 @@ class SearchViewController: UIViewController {
             }
         }
     }
-    
-    // MARK: - link버튼 클릭시 액션
-//    @objc func linkButtonTapped(_ sender: UIButton) {
-//
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let webVC = sb.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-//        webVC.modalTransitionStyle = .coverVertical
-//        webVC.modalPresentationStyle = .pageSheet
-//
-//        webVC
-//
-//        self.navigationController?.pushViewController(webVC, animated: true)
-//    }
     
     
 }
