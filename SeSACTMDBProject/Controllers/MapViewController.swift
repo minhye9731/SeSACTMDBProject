@@ -18,50 +18,19 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureNavi()
-//        configureNaviBarButton()
-        showActionSheet()
+        setBarButtonItem()
         
         locationManager.delegate = self
         
         let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
         setRegionOnly(center: center)
-        showAllTheaterLocationAndName()
-        
+        self.showAndPinTheaters(dataArray: self.theaterData.mapAnnotations)
+
     }
     
-    func configureNavi() {
-        
-        self.navigationController?.navigationBar.tintColor = .white
-        
-        let navibarAppearance = UINavigationBarAppearance()
-        let barbuttonItemAppearance = UIBarButtonItemAppearance()
-        
-        navibarAppearance.backgroundColor = .white
-        navibarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, .font: UIFont.boldSystemFont(ofSize: 20)]
-        navibarAppearance.shadowColor = .gray
-        
-        self.navigationItem.scrollEdgeAppearance = navibarAppearance
-        self.navigationItem.standardAppearance = navibarAppearance
-        
-        // searchController 만들어서 넣기!
-        navibarAppearance.buttonAppearance = barbuttonItemAppearance
-    }
-    
-//    func configureNaviBarButton() {
-//        let pinButton = UIBarButtonItem(image: UIImage(systemName: "mappin"), style: .plain, target: self, action: #selector(showActionSheet))
-//        
-//        self.navigationItem.rightBarButtonItem = pinButton
-//    }
-    
-    
-    func showAllTheaterLocationAndName() {
-        for theater in 0...(theaterData.mapAnnotations.count - 1) {
-            let test = CLLocationCoordinate2D(latitude: theaterData.mapAnnotations[theater].latitude, longitude: theaterData.mapAnnotations[theater].longitude)
-            let locationName = theaterData.mapAnnotations[theater].location
-            
-            setAnnotationOnly(center: test, name: locationName)
-        }
+    // MARK: - navi 설정
+    func setBarButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "mappin"), style: .plain, target: self, action: #selector(showActionSheet))
     }
     
     // MARK: - 위치권한 허용 팝업표시
@@ -70,72 +39,36 @@ class MapViewController: UIViewController {
         showRequestLocationServiceAlert()
     }
     
-    // MARK: - 맵뷰 설정
-    // 중심설정 함수 (pin표기 X)
-    func setRegionOnly(center: CLLocationCoordinate2D) {
-
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 20000, longitudinalMeters: 20000)
-        mapView.setRegion(region, animated: true)
-    }
-    
-    // pin 고정 설정함수
-    func setAnnotationOnly(center: CLLocationCoordinate2D, name: String) {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = center
-        annotation.title = name
-        
-        mapView.addAnnotation(annotation)
-    }
-    
-    func grouping(brand: String) {
-        
-        let groupedTheater = Dictionary(grouping: theaterData.mapAnnotations) { $0.type }
-        let filteredData = groupedTheater[brand]!
-        
-        for theater in 0...(filteredData.count - 1) {
-            let test = CLLocationCoordinate2D(latitude: theaterData.mapAnnotations[theater].latitude, longitude: theaterData.mapAnnotations[theater].longitude)
-            let locationName = theaterData.mapAnnotations[theater].location
-            
-            setAnnotationOnly(center: test, name: locationName)
-        }
-    }
-    
-    func removeAnnotations() {
-        mapView.annotations.forEach { (annotation) in
-            if let annotation = annotation as? MKPointAnnotation {
-                mapView.removeAnnotation(annotation)
-            }
-        }
-    }
-    
-    
     // MARK: - 액션시트 생성
-//    @objc
+    @objc
     func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "메가박스", style: .default, handler: {(ACTION:UIAlertAction) in
+            print("메가박스")
             self.removeAnnotations()
-            self.grouping(brand: "메가박스")
+            self.showAndPinTheatersPerBrand(brand: "메가박스")
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-            
         }))
         
         actionSheet.addAction(UIAlertAction(title: "롯데시네마", style: .default, handler: {_ in
+            print("롯데시네마")
             self.removeAnnotations()
-            self.grouping(brand: "롯데시네마")
+            self.showAndPinTheatersPerBrand(brand: "롯데시네마")
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "CGV", style: .default, handler: {(ACTION:UIAlertAction) in
+            print("CGV")
             self.removeAnnotations()
-            self.grouping(brand: "CGV")
+            self.showAndPinTheatersPerBrand(brand: "CGV")
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "전체보기", style: .default, handler: {(ACTION:UIAlertAction) in
+            print("전체보기")
             self.removeAnnotations()
-            self.showAllTheaterLocationAndName()
+            self.showAndPinTheaters(dataArray: self.theaterData.mapAnnotations)
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }))
         
@@ -197,20 +130,17 @@ extension MapViewController: CLLocationManagerDelegate {
 // MARK: - 위치 관련된 User Defined 메서드
 extension MapViewController {
     
-    // MARK: - iOS 위치 서비스 활성화여부 확인 (먼저)
+    // iOS 위치 서비스 활성화여부 확인 (먼저)
     func checkUserDeviceLocationServiceAuthorization() {
         
         let authorizationStatus: CLAuthorizationStatus
      
-        // 현재 authorizationStatus 가져오기
         if #available(iOS 14.0, *) {
-            // 인스턴스를 통해 locationManager가 가지고 있는 상태를 가져옴
             authorizationStatus = locationManager.authorizationStatus
         } else {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
         
-        // iOS 위치 서비스 활성화 여부 체크하기
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)
         } else {
@@ -218,7 +148,6 @@ extension MapViewController {
         }
     }
 
-    // MARK: - 사용자의 위치 권한 상태 확인 (그다음)
     func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
@@ -229,9 +158,8 @@ extension MapViewController {
         case .restricted, .denied:
             print("DENIED, 청년취업사관학교 영등포 캠퍼스가 맵뷰의 중심이 되도록 설정합니다.")
             let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-            setRegionOnly(center: center)
-            showRequestLocationServiceAlert()
-            // 청년취업사관학교 영등포 캠퍼스 위치를 맵뷰 중심으로
+            setRegionOnly(center: center) // 청년취업사관학교를 맵뷰 중심으로
+            showRequestLocationServiceAlert() // 위치권한 허용하도록 설정으로 이동유도 팝업
             
         case .authorizedWhenInUse:
             print("WHEN IN USE")
@@ -241,6 +169,60 @@ extension MapViewController {
             locationManager.startUpdatingLocation() // 현재위치를 맵뷰 중심으로
         }
     }
+}
+
+// MARK: - 세세한 함수 정하기
+extension MapViewController {
+    
+    
+    
+    // 영화관 브랜드별 pin 설정
+    func showAndPinTheatersPerBrand(brand: String) {
+        
+        let groupedTheater = Dictionary(grouping: theaterData.mapAnnotations) { $0.type }
+        let filteredData = groupedTheater[brand]!
+        
+        showAndPinTheaters(dataArray: filteredData)
+    }
+    
+    // 영화관 데이터들 표기하기
+    func showAndPinTheaters(dataArray: [Theater]) {
+        
+        for theater in dataArray {
+            let test = CLLocationCoordinate2D(latitude: theater.latitude, longitude: theater.longitude)
+            let brandName = theater.type
+            let locationName = theater.location
+            
+            setAnnotationOnly(center: test, brand: brandName, location: locationName)
+        }
+    }
+    
+    // 맵뷰 중심 설정
+    func setRegionOnly(center: CLLocationCoordinate2D) {
+
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 20000, longitudinalMeters: 20000)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    // 맵뷰내 pin 설정
+    func setAnnotationOnly(center: CLLocationCoordinate2D, brand: String, location: String) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = center
+        annotation.title = brand
+        annotation.subtitle = location
+        
+        mapView.addAnnotation(annotation)
+    }
+    
+    // 모든 Annotation 삭제
+    func removeAnnotations() {
+        mapView.annotations.forEach { (annotation) in
+            if let annotation = annotation as? MKPointAnnotation {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+    
 }
 
 // MARK: - 지도관련 설정
