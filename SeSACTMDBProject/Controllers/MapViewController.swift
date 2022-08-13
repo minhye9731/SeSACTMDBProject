@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
     
     // MARK: - navi 설정
     func setBarButtonItem() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "mappin"), style: .plain, target: self, action: #selector(showActionSheet))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(showActionSheet))
     }
     
     // MARK: - 위치권한 허용 팝업표시

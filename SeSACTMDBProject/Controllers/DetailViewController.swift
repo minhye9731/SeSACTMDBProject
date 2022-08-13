@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
     var castDataArray: [Cast] = []
     var crewDataArray: [Crew] = []
     
+    var isExpanded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,8 @@ class DetailViewController: UIViewController {
         tableView.register(UINib(nibName: OverViewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverViewTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: MemberTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MemberTableViewCell.reuseIdentifier)
 
+        tableView.rowHeight = UITableView.automaticDimension
+        
     }
     
     // MARK: - Navi 설정
@@ -64,6 +68,7 @@ class DetailViewController: UIViewController {
         posterImageView.kf.setImage(with: profileURL)
         posterImageView.contentMode = .scaleAspectFill
     }
+    
 }
 
 // MARK: - tableview 설정
@@ -99,8 +104,23 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             let overViewCell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.reuseIdentifier, for: indexPath) as! OverViewTableViewCell
             
             overViewCell.overViewLabel?.text = list2[row].overview
+            overViewCell.overViewLabel.numberOfLines = isExpanded ? 0 : 2
+            
+            if self.isExpanded {
+                overViewCell.expandButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+            } else {
+                overViewCell.expandButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            }
+            
+            overViewCell.expandButtonTapped = {
+                self.isExpanded = !self.isExpanded
+                print(self.isExpanded)
+                self.tableView.reloadData()
+            }
+            
             
             return overViewCell
+            
         } else if indexPath.section == 1 {
             let castCell = tableView.dequeueReusableCell(withIdentifier: MemberTableViewCell.reuseIdentifier, for: indexPath) as! MemberTableViewCell
             
@@ -118,7 +138,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 200 : 100
+        return indexPath.section == 0 ? UITableView.automaticDimension : 100
+
     }
+    
     
 }
