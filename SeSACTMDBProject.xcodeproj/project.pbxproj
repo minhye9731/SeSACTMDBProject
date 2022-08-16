@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0E0E70EB28A3B2B20011467E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E70EA28A3B2B20011467E /* WebViewController.swift */; };
+		0E1B547128ABE4C600901508 /* TMBDFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1B546E28ABE4BF00901508 /* TMBDFramework.framework */; };
+		0E1B547228ABE4C600901508 /* TMBDFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1B546E28ABE4BF00901508 /* TMBDFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E1B547428ABEA5400901508 /* WalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B547328ABEA5400901508 /* WalkThrough.storyboard */; };
+		0E1B547728ABEAF000901508 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B547628ABEAF000901508 /* WalkThroughViewController.swift */; };
+		0E1B547928ABEB1A00901508 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B547828ABEB1A00901508 /* FirstViewController.swift */; };
+		0E1B547B28ABEB3C00901508 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B547A28ABEB3C00901508 /* SecondViewController.swift */; };
+		0E1B547D28ABEB6000901508 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B547C28ABEB6000901508 /* ThirdViewController.swift */; };
+		0E1B547F28ABEDC600901508 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B547E28ABEDC600901508 /* FourthViewController.swift */; };
+		0E1B548228ABF42200901508 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B548128ABF42200901508 /* UIViewController+Extension.swift */; };
+		0E1B548428ABFCAC00901508 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B548328ABFCAC00901508 /* UIButton+Extension.swift */; };
 		0E4A956F2899F6BA00FA3ACC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */; };
 		0E4A95712899F6BA00FA3ACC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */; };
 		0E4A95762899F6BA00FA3ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E4A95742899F6BA00FA3ACC /* Main.storyboard */; };
@@ -43,8 +53,48 @@
 		0EF3856628A2512F005BBA0A /* PosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF3856428A2512F005BBA0A /* PosterCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0E1B546D28ABE4BF00901508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E1B546828ABE4BF00901508 /* TMBDFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0E1B543F28ABA02F00901508;
+			remoteInfo = TMBDFramework;
+		};
+		0E1B546F28ABE4BF00901508 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E1B546828ABE4BF00901508 /* TMBDFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0E1B544928ABA03000901508;
+			remoteInfo = TMBDFrameworkTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0E1B546628ABE06A00901508 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0E1B547228ABE4C600901508 /* TMBDFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E0E70EA28A3B2B20011467E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		0E1B546828ABE4BF00901508 /* TMBDFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TMBDFramework.xcodeproj; path = "../../과제/TMBDFramework/TMBDFramework.xcodeproj"; sourceTree = "<group>"; };
+		0E1B547328ABEA5400901508 /* WalkThrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WalkThrough.storyboard; sourceTree = "<group>"; };
+		0E1B547628ABEAF000901508 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
+		0E1B547828ABEB1A00901508 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		0E1B547A28ABEB3C00901508 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		0E1B547C28ABEB6000901508 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		0E1B547E28ABEDC600901508 /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		0E1B548128ABF42200901508 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		0E1B548328ABFCAC00901508 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		0E4A956B2899F6BA00FA3ACC /* SeSACTMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E1B547128ABE4C600901508 /* TMBDFramework.framework in Frameworks */,
 				0E4A95AB289AA75100FA3ACC /* Kingfisher in Frameworks */,
 				0E4A95A8289AA70E00FA3ACC /* SwiftyJSON in Frameworks */,
 				0E4A95AE289AC05600FA3ACC /* SideMenu in Frameworks */,
@@ -93,12 +144,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1B546328ABE06A00901508 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0E1B546928ABE4BF00901508 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B546E28ABE4BF00901508 /* TMBDFramework.framework */,
+				0E1B547028ABE4BF00901508 /* TMBDFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0E1B547528ABEA6100901508 /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B547328ABEA5400901508 /* WalkThrough.storyboard */,
+				0E1B547628ABEAF000901508 /* WalkThroughViewController.swift */,
+				0E1B547828ABEB1A00901508 /* FirstViewController.swift */,
+				0E1B547A28ABEB3C00901508 /* SecondViewController.swift */,
+				0E1B547C28ABEB6000901508 /* ThirdViewController.swift */,
+				0E1B547E28ABEDC600901508 /* FourthViewController.swift */,
+			);
+			path = WalkThrough;
+			sourceTree = "<group>";
+		};
+		0E1B548028ABF3FC00901508 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B548128ABF42200901508 /* UIViewController+Extension.swift */,
+				0E1B548328ABFCAC00901508 /* UIButton+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0E4A95622899F6BA00FA3ACC = {
 			isa = PBXGroup;
 			children = (
+				0E1B546828ABE4BF00901508 /* TMBDFramework.xcodeproj */,
 				0E4A95822899F7D500FA3ACC /* .gitignore */,
 				0E4A956D2899F6BA00FA3ACC /* SeSACTMDBProject */,
 				0E4A956C2899F6BA00FA3ACC /* Products */,
+				0E1B546328ABE06A00901508 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,11 +207,13 @@
 				0E4A95702899F6BA00FA3ACC /* SceneDelegate.swift */,
 				0E4A956E2899F6BA00FA3ACC /* AppDelegate.swift */,
 				0E4A95A1289A824700FA3ACC /* Constant.swift */,
+				0E1B548028ABF3FC00901508 /* Extensions */,
 				0EF3855428A2456E005BBA0A /* View */,
 				0E873A1528A162EF00D989F7 /* Network */,
 				0E4A95892899FA8900FA3ACC /* Key */,
 				0E4A959E289A7B6000FA3ACC /* Data */,
 				0E4A9596289A748900FA3ACC /* Models */,
+				0E1B547528ABEA6100901508 /* WalkThrough */,
 				0E4A9597289A74A100FA3ACC /* Controllers */,
 				0E4A95772899F6BC00FA3ACC /* Assets.xcassets */,
 				0E4A957C2899F6BC00FA3ACC /* Info.plist */,
@@ -204,6 +297,7 @@
 				0E4A95672899F6BA00FA3ACC /* Sources */,
 				0E4A95682899F6BA00FA3ACC /* Frameworks */,
 				0E4A95692899F6BA00FA3ACC /* Resources */,
+				0E1B546628ABE06A00901508 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,12 +348,35 @@
 			);
 			productRefGroup = 0E4A956C2899F6BA00FA3ACC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0E1B546928ABE4BF00901508 /* Products */;
+					ProjectRef = 0E1B546828ABE4BF00901508 /* TMBDFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0E4A956A2899F6BA00FA3ACC /* SeSACTMDBProject */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0E1B546E28ABE4BF00901508 /* TMBDFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TMBDFramework.framework;
+			remoteRef = 0E1B546D28ABE4BF00901508 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0E1B547028ABE4BF00901508 /* TMBDFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TMBDFrameworkTests.xctest;
+			remoteRef = 0E1B546F28ABE4BF00901508 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0E4A95692899F6BA00FA3ACC /* Resources */ = {
@@ -275,6 +392,7 @@
 				0EF3855E28A24763005BBA0A /* PosterView.xib in Resources */,
 				0EF3856628A2512F005BBA0A /* PosterCollectionViewCell.xib in Resources */,
 				0E4A95762899F6BA00FA3ACC /* Main.storyboard in Resources */,
+				0E1B547428ABEA5400901508 /* WalkThrough.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E4A95A2289A824700FA3ACC /* Constant.swift in Sources */,
+				0E1B547F28ABEDC600901508 /* FourthViewController.swift in Sources */,
 				0E0E70EB28A3B2B20011467E /* WebViewController.swift in Sources */,
 				0EF3856228A24BAE005BBA0A /* ListTableViewCell.swift in Sources */,
 				0E4A956F2899F6BA00FA3ACC /* AppDelegate.swift in Sources */,
@@ -295,8 +414,11 @@
 				0E61757C28A4EBD200A2A792 /* MapViewController.swift in Sources */,
 				0EF3855A28A2468D005BBA0A /* PosterView.swift in Sources */,
 				0E873A1928A163D400D989F7 /* URL+Extension.swift in Sources */,
+				0E1B547B28ABEB3C00901508 /* SecondViewController.swift in Sources */,
 				0E4A95BD289D7D9B00FA3ACC /* OverViewTableViewCell.swift in Sources */,
 				0EF3856028A2495F005BBA0A /* ListViewController.swift in Sources */,
+				0E1B548428ABFCAC00901508 /* UIButton+Extension.swift in Sources */,
+				0E1B547728ABEAF000901508 /* WalkThroughViewController.swift in Sources */,
 				0E4A95A0289A7B7500FA3ACC /* TMDBModel.swift in Sources */,
 				0E4A95C1289D7E1500FA3ACC /* MemberTableViewCell.swift in Sources */,
 				0E4A959C289A75A800FA3ACC /* SearchCollectionViewCell.swift in Sources */,
@@ -305,6 +427,9 @@
 				0E873A1728A1630A00D989F7 /* Endpoint.swift in Sources */,
 				0E4A95B6289BB2D700FA3ACC /* DetailViewController.swift in Sources */,
 				0E61757E28A4F2AF00A2A792 /* TheaterData.swift in Sources */,
+				0E1B547D28ABEB6000901508 /* ThirdViewController.swift in Sources */,
+				0E1B548228ABF42200901508 /* UIViewController+Extension.swift in Sources */,
+				0E1B547928ABEB1A00901508 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,9 +579,10 @@
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACTMDBProject/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 영화관 정보를 보여주기 위해서 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = WalkThrough;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,9 +608,10 @@
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACTMDBProject/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치 기반으로 주변의 영화관 정보를 보여주기 위해서 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = WalkThrough;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

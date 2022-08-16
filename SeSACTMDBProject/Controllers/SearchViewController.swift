@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TMBDFramework
 
 import Alamofire
 import SwiftyJSON
@@ -37,11 +38,36 @@ class SearchViewController: UIViewController {
         
         collectionView.register(UINib(nibName: SearchCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SearchCollectionViewCell.reuseIdentifier)
         
-        configureLayout()
+        configureLayout() // ->삭제하고 대신 framework로 처리하고자 했음
+
         
         fetchTVData(startPage: startPage)
         fetchGenreData()
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // 아래 함수는 접근제어 open으로 선언된 ConfigureLayout 클래스의 함수니까 나와야 하는데 안된다ㅠㅠ
+//        ConfigureLayout.configureLayout(spacingNum: 8, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 1.3, scrollDirct: .vertical, top: 8, left: 8, bottom: 8, right: 8, minLineSpc: 8, minIntSpc: 8)
+    }
+    
+    // MARK: - 첫실행 여부 확인함수
+    func checkFirstRun() {
+        
+        if UserDefaults.standard.bool(forKey: "FirstRun") == false {
+            print("첫번째 사용자일 경우")
+            
+            let sb = UIStoryboard(name: "WalkThrough", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "WalkThroughViewController") as? WalkThroughViewController
+            vc?.modalPresentationStyle = .fullScreen
+            self.present(vc!, animated: true)
+        }
+        
+    }
+    
+    
     
 // MARK: - Navi 설정
     func configureNavi() {
@@ -79,6 +105,8 @@ class SearchViewController: UIViewController {
         sideVC?.modalTransitionStyle = .coverVertical
         sideVC?.modalPresentationStyle = .pageSheet
         self.present(sideVC!, animated: true, completion: nil)
+        
+        
     }
     
     // 임시로 화면 이동 기능 넣음 (화면 확인 목적)
@@ -126,8 +154,10 @@ class SearchViewController: UIViewController {
 
                 self.genre.appendGenreDT(value: name, key: id)
             }
-
-            self.collectionView.reloadData()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -190,6 +220,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             webVC.destinationURL = self.keyURLList[self.list[indexPath.row].id] ?? "https://www.youtube.com/watch?v=b1F2AVsJ05c"
             
             self.navigationController?.pushViewController(webVC, animated: true)
+            
+            // OpenWebView.presentWebViewController...
+            
         }
         return item
     }
@@ -221,9 +254,12 @@ extension SearchViewController {
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
-        
+
         collectionView.collectionViewLayout = layout
     }
+    
+    
+    
 }
 
 // MARK: - 페이지네이션

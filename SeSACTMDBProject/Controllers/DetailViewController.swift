@@ -117,8 +117,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 print(self.isExpanded)
                 self.tableView.reloadData()
             }
-            
-            
             return overViewCell
             
         } else if indexPath.section == 1 {

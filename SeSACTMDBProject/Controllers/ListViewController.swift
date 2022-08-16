@@ -12,7 +12,6 @@ class ListViewController: UIViewController {
 
     @IBOutlet weak var mainTableView: UITableView!
 
-//    var similarTVListName: [[String]] = [[]]
     var similarTVList: [[String]] = [[]]
     
     override func viewDidLoad() {

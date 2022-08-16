@@ -13,7 +13,6 @@ class OverViewTableViewCell: UITableViewCell {
     @IBOutlet weak var expandButton: UIButton!
     
     var expandButtonTapped : (() -> Void) = {}
-//    var isExpanded = false
     
     override func awakeFromNib() {
         super.awakeFromNib()

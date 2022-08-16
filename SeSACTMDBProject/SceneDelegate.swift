@@ -22,10 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: SearchViewController.reuseIdentifier) as! SearchViewController
         window?.rootViewController = UINavigationController(rootViewController: vc)
         window?.makeKeyAndVisible()
+        
+        vc.checkFirstRun()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
